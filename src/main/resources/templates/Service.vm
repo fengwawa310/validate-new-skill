@@ -1,0 +1,8 @@
+package ${package_name}.${module}.service;
+
+/**
+* ${model}Service接口
+*/
+public interface ${model}Service {
+
+}
