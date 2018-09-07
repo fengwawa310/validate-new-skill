@@ -8,11 +8,20 @@ spring:
     password: micp_123
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
+  redis:
+    host: 192.168.2.145
+    port: 5020
+    password:
+    jedis:
+      pool:
+        max-idle: 10
+        max-active: 10
 mybatis:
   type-aliases-package: cn.com.cintel.validatenewskill
   mapper-locations: classpath:/mapper/**/*.xml
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 debug: true
+
 
 

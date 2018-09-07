@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * BNetPatientService实现
@@ -29,4 +30,19 @@ public class BNetPatientServiceImpl implements BNetPatientService {
         bNetPatientExample.createCriteria().andIdEqualTo("165416F4CBDF06");
         return bNetPatientMapper.selectByExample(bNetPatientExample).get(0);
     }
+
+    @Override
+    public int testTransactional() {
+        BNetPatient bNetPatient = new BNetPatient();
+        bNetPatient.setId("0907");
+        bNetPatient.setGender(1);
+        bNetPatient.setCreateTime(new Date());
+        int a = bNetPatientMapper.insert(bNetPatient);
+        if(a > 0){
+            throw new IllegalArgumentException("ID不符合规范");
+        }
+        return a;
+    }
+
+
 }

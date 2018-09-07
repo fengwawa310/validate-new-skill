@@ -9,4 +9,6 @@ public interface BNetPatientService {
 
     BNetPatient getBNetPatientInfo();
 
+    int testTransactional();
+
 }

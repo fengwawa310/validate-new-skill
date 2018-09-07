@@ -34,6 +34,12 @@ public class ValidationController {
         return bNetPatient;
     }
 
+    //测试事务的回滚
+    @GetMapping(value = "/testTransactional",produces = "application/json;charset=utf-8")
+    public void testTransactional(){
+        bNetPatientService.testTransactional();
+    }
+
     @PostMapping(value = "/testValidator",produces = "application/json;charset=utf-8")
     @ResponseBody
     public Result testValidator(@RequestBody ValidateBean validateBean){
