@@ -30,20 +30,20 @@ import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 @RequestMapping(value = "/elastic")
 public class ElasticSearchController {
 
-//    @Resource
+    @Resource
     TransportClient transportClient;
 
     @GetMapping(value = "/insert",produces = "application/json;charset=utf-8")
     public void insert(){
-        transportClient.admin().indices().prepareCreate("productIndex").execute().actionGet();
+        transportClient.admin().indices().prepareCreate("book02").execute().actionGet();
         XContentBuilder mapping = null;
         try {
             mapping = jsonBuilder()
                     .startObject()
-                    .startObject("productIndex")
+                    .startObject("book02")
                     .startObject("properties")
-                    .startObject("title").field("type", "string").field("store", "yes").endObject()
-                    .startObject("description").field("type", "string").field("index", "not_analyzed").endObject()
+                    .startObject("title").field("type", "text").field("store", true).endObject()
+                    .startObject("description").field("type", "text").field("index", false).endObject()
                     .startObject("price").field("type", "double").endObject()
                     .startObject("onSale").field("type", "boolean").endObject()
                     .startObject("type").field("type", "integer").endObject()
@@ -55,7 +55,7 @@ public class ElasticSearchController {
             e.printStackTrace();
         }
         PutMappingRequest mappingRequest =
-                Requests.putMappingRequest("productIndex").type("productIndex").source(mapping);
+                Requests.putMappingRequest("book02").type("book02").source(mapping);
         transportClient.admin().indices().putMapping(mappingRequest).actionGet();
     }
 

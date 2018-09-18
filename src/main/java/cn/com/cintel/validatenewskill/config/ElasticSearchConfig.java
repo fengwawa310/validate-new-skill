@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
+import javax.annotation.PostConstruct;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
@@ -29,6 +30,11 @@ import java.net.UnknownHostException;
 @EnableAutoConfiguration
 @PropertySource(value = "classpath:/es.properties")
 public class ElasticSearchConfig {
+
+    @PostConstruct
+    void init() {
+        System.setProperty("es.set.netty.runtime.available.processors", "false");
+    }
 
     @Value("${es.user}")
     private String user;
