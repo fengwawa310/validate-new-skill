@@ -35,12 +35,12 @@ public class ElasticSearchController {
 
     @GetMapping(value = "/insert",produces = "application/json;charset=utf-8")
     public void insert(){
-        transportClient.admin().indices().prepareCreate("book02").execute().actionGet();
+        transportClient.admin().indices().prepareCreate("book").execute().actionGet();
         XContentBuilder mapping = null;
         try {
             mapping = jsonBuilder()
                     .startObject()
-                    .startObject("book02")
+                    .startObject("book")
                     .startObject("properties")
                     .startObject("title").field("type", "text").field("store", true).endObject()
                     .startObject("description").field("type", "text").field("index", false).endObject()
@@ -55,9 +55,11 @@ public class ElasticSearchController {
             e.printStackTrace();
         }
         PutMappingRequest mappingRequest =
-                Requests.putMappingRequest("book02").type("book02").source(mapping);
+                Requests.putMappingRequest("book").type("book").source(mapping);
         transportClient.admin().indices().putMapping(mappingRequest).actionGet();
     }
+
+
 
 
 
