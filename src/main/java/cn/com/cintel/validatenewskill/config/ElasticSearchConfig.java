@@ -49,10 +49,12 @@ public class ElasticSearchConfig {
 
     @Bean
     public TransportClient transportClient(){
-        Settings settings = Settings.builder().put("cluster.name", clusterName)
+        Settings settings = Settings.builder()
+                .put("cluster.name", clusterName)
                 .put("xpack.security.transport.ssl.enabled", false)
                 .put("xpack.security.user", user + ":" + password)
-                .put("client.transport.sniff", true).build();
+                .put("client.transport.sniff", true)
+                .build();
 
         PreBuiltXPackTransportClient client = new PreBuiltXPackTransportClient(settings);
         if(StringUtils.isNotBlank(ip)) {
