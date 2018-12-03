@@ -14,7 +14,7 @@ import javax.annotation.Resource;
 
 /**
  * @Auther: sky
- * @Description:
+ * @Description: 测试百度validation的使用
  * @Date: Create in 14:27 2018/9/6
  * @Modified By:
  */
